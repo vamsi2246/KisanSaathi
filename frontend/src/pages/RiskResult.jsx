@@ -39,7 +39,6 @@ export default function RiskResult() {
     return (
         <div className="max-w-5xl mx-auto px-4 sm:px-6 py-10 space-y-6">
 
-            {/* Header */}
             <motion.div variants={fadeUp} initial="hidden" animate="visible" className="flex items-center justify-between">
                 <div className="flex items-center gap-3">
                     <div className="p-2 bg-violet-100 rounded-xl">
@@ -55,7 +54,6 @@ export default function RiskResult() {
                 </button>
             </motion.div>
 
-            {/* Hero — crop + risk only (no profit) */}
             <motion.div variants={fadeUp} initial="hidden" animate="visible">
                 <RecommendationHero
                     predictedCrop={result.predicted_crop}
@@ -63,14 +61,12 @@ export default function RiskResult() {
                 />
             </motion.div>
 
-            {/* Gauge + Advisories side by side */}
             <motion.div variants={fadeUp} initial="hidden" animate="visible"
                 className="grid grid-cols-1 md:grid-cols-2 gap-5">
                 <SustainabilityGauge score={result.sustainability_score} />
                 <AdvisoryPanel advisories={allAdvisories} cropName={result.predicted_crop} />
             </motion.div>
 
-            {/* Yield impact chart */}
             <motion.div variants={fadeUp} initial="hidden" animate="visible">
                 <YieldImpactChart farmPlan={result.farm_plan} />
             </motion.div>

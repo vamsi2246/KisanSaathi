@@ -11,7 +11,6 @@ const NAV_ITEMS = [
 export default function Sidebar() {
     return (
         <aside className="w-60 min-h-screen bg-white border-r border-slate-100 flex flex-col shadow-sm">
-            {/* Logo */}
             <div className="flex items-center gap-2.5 px-5 py-5 border-b border-slate-100">
                 <div className="p-1.5 bg-green-100 rounded-lg">
                     <Leaf className="w-5 h-5 text-green-600" />
@@ -21,7 +20,6 @@ export default function Sidebar() {
                 </span>
             </div>
 
-            {/* Navigation */}
             <nav className="flex-1 px-3 py-4 space-y-1">
                 {NAV_ITEMS.map(({ to, icon: Icon, label, end }) => (
                     <NavLink
@@ -41,7 +39,6 @@ export default function Sidebar() {
                 ))}
             </nav>
 
-            {/* Footer */}
             <div className="px-5 py-4 border-t border-slate-100 text-xs text-slate-400">
                 KisanSaathi v1.0
             </div>

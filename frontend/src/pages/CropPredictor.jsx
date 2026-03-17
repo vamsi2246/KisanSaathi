@@ -7,7 +7,6 @@ import ErrorState from '../components/ui/ErrorState';
 import { fadeUp } from '../utils/animations';
 import { useNavigate } from 'react-router-dom';
 
-// ── Constants ─────────────────────────────────────────────────────────────────
 const SOIL_TYPES = ['Loamy', 'Sandy', 'Clay', 'Silty', 'Peaty'];
 const IRRIGATION_TYPES = ['Drip', 'Sprinkler', 'Flood', 'Rainfed'];
 const SEASONS = ['Kharif', 'Rabi', 'Summer'];
@@ -24,7 +23,6 @@ const INITIAL = {
     Fertilizer_Used_kg: 110,
 };
 
-// ── Reusable field components ─────────────────────────────────────────────────
 function SliderField({ label, icon: Icon, name, min, max, step = 1, unit, value, onChange, error }) {
     const pct = ((value - min) / (max - min)) * 100;
     return (
@@ -104,7 +102,6 @@ function Card({ title, subtitle, children }) {
     );
 }
 
-// ── Main Page ─────────────────────────────────────────────────────────────────
 export default function CropPredictor() {
     const [form, setForm] = useState(INITIAL);
     const [loading, setLoading] = useState(false);
@@ -121,7 +118,6 @@ export default function CropPredictor() {
             const data = await predictCrop(form);
             const crop = data.recommended_crop;
             sessionStorage.setItem('cropResult', JSON.stringify(crop));
-            // save form data so YieldResult CTA can pre-fill YieldPredictor
             sessionStorage.setItem('cropPrefillForYield', JSON.stringify({ ...form, crop_name: crop, acres: form.Farm_Area_acres }));
             navigate('/crop-result');
         } catch (err) {
@@ -135,7 +131,6 @@ export default function CropPredictor() {
         <div className="max-w-3xl mx-auto px-4 sm:px-6 py-10">
             <LoadingOverlay show={loading} message="Analyzing farm conditions…" />
 
-            {/* Header */}
             <motion.div variants={fadeUp} initial="hidden" animate="visible" className="mb-8">
                 <div className="flex items-center gap-3 mb-2">
                     <div className="p-2 bg-green-100 rounded-xl">

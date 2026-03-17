@@ -2,7 +2,6 @@ import React, { createContext, useContext, useState, useCallback } from 'react';
 
 const STORAGE_KEY = 'kisansaathi_farm_plan';
 
-// ── Helpers ────────────────────────────────────────────────────────────────────
 function load() {
     try {
         const raw = localStorage.getItem(STORAGE_KEY);
@@ -16,22 +15,12 @@ function save(data) {
     try {
         localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
     } catch {
-        // storage quota exceeded — silently ignore
+        // storage quota exceeded
     }
 }
 
-// ── Context ────────────────────────────────────────────────────────────────────
 const FarmPlanContext = createContext(null);
 
-/**
- * FarmPlanProvider — wraps the app and exposes farmPlan state + helpers.
- *
- * State shape:
- *   {
- *     result:   object | null   → API response from /generate-farm-plan
- *     formData: object | null   → The input form values used
- *   }
- */
 export function FarmPlanProvider({ children }) {
     const [state, setState] = useState(() => load() ?? { result: null, formData: null });
 
@@ -53,10 +42,6 @@ export function FarmPlanProvider({ children }) {
     );
 }
 
-/**
- * useFarmPlan — hook to access farm plan context.
- * Returns: { result, formData, setFarmPlan, clearFarmPlan }
- */
 export function useFarmPlan() {
     const ctx = useContext(FarmPlanContext);
     if (!ctx) throw new Error('useFarmPlan must be used inside <FarmPlanProvider>');

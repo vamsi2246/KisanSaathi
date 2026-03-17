@@ -6,8 +6,6 @@ import {
 } from 'lucide-react';
 import { fadeIn, hoverLift } from '../../utils/animations';
 
-// ── Severity detection ─────────────────────────────────────────────────────────
-// Scans advisory text for keywords to auto-classify severity.
 const DANGER_KEYWORDS = ['critically', 'severe', 'frost', 'extreme', 'exceeded', 'too hot', 'too cold', 'urgently', 'flood', 'immediately'];
 const WARNING_KEYWORDS = ['high', 'above', 'below', 'outside', 'alkaline', 'acidic', 'reduce', 'increase', 'moderate', 'excess', 'low', 'risk'];
 
@@ -19,7 +17,6 @@ function detectSeverity(text = '') {
     return 'info';
 }
 
-// ── Severity config ────────────────────────────────────────────────────────────
 const SEVERITY = {
     info: {
         icon: Info,
@@ -47,13 +44,11 @@ const SEVERITY = {
     },
 };
 
-// ── Single alert card ──────────────────────────────────────────────────────────
 function AdvisoryCard({ text, index }) {
     const severity = detectSeverity(text);
     const cfg = SEVERITY[severity] ?? SEVERITY.info;
     const Icon = cfg.icon;
 
-    // Strip leading emoji / symbols for clean display
     const cleanText = text.replace(/^[\u{1F300}-\u{1FFFF}✅⚗🌡🌦🌧🌱🪨🟤💧🏜❄☀📅🚿💦⚠️ ]+/u, '').trim();
 
     return (
@@ -69,14 +64,6 @@ function AdvisoryCard({ text, index }) {
     );
 }
 
-/**
- * AdvisoryPanel
- *
- * Props:
- *   advisories  string[]  — list of advisory strings from the API
- *   cropName    string    — optional crop label for the header
- *   className   string    — extra wrapper classes
- */
 export default function AdvisoryPanel({ advisories = [], cropName, className = '' }) {
     if (!advisories.length) return null;
 
@@ -88,7 +75,6 @@ export default function AdvisoryPanel({ advisories = [], cropName, className = '
             whileHover={hoverLift}
             className={`bg-white border border-slate-100 rounded-2xl shadow-sm overflow-hidden ${className}`}
         >
-            {/* Header */}
             <div className="flex items-center gap-2 px-4 py-3 border-b border-slate-50 bg-slate-50/60">
                 <MessageSquare className="w-4 h-4 text-slate-400" />
                 <h3 className="text-sm font-semibold text-slate-700">
@@ -99,7 +85,6 @@ export default function AdvisoryPanel({ advisories = [], cropName, className = '
                 </span>
             </div>
 
-            {/* Advisory cards */}
             <div className="px-4 py-3 space-y-2">
                 <AnimatePresence>
                     {advisories.map((text, i) => (

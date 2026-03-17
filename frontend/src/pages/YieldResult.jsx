@@ -47,7 +47,6 @@ export default function YieldResult() {
     return (
         <div className="max-w-2xl mx-auto px-4 sm:px-6 py-10 space-y-6">
 
-            {/* Header */}
             <motion.div variants={fadeUp} initial="hidden" animate="visible"
                 className="flex items-center justify-between">
                 <div className="flex items-center gap-3">
@@ -64,7 +63,6 @@ export default function YieldResult() {
                 </button>
             </motion.div>
 
-            {/* Hero banner */}
             <motion.div
                 initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.45, ease: 'easeOut' }}
@@ -96,7 +94,6 @@ export default function YieldResult() {
                 </div>
             </motion.div>
 
-            {/* Breakdown tiles */}
             <motion.div variants={fadeUp} initial="hidden" animate="visible"
                 className="grid grid-cols-2 gap-4">
                 <StatCard label="Yield per Acre" value={`${data.yield_per_acre} tonnes`} />

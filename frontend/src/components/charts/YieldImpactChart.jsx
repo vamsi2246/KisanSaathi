@@ -7,7 +7,6 @@ import { motion } from 'framer-motion';
 import { Leaf, TrendingDown } from 'lucide-react';
 import { slideUp, hoverCard } from '../../utils/animations';
 
-// ── Custom Tooltip ─────────────────────────────────────────────────────────────
 function CustomTooltip({ active, payload, label }) {
     if (!active || !payload?.length) return null;
 
@@ -48,7 +47,6 @@ function CustomTooltip({ active, payload, label }) {
     );
 }
 
-// ── Loss badge above each adjusted bar ────────────────────────────────────────
 function LossBadge({ x, y, width, value, baseValue }) {
     if (!baseValue || baseValue === value) return null;
     const loss = (((baseValue - value) / baseValue) * 100).toFixed(1);
@@ -68,13 +66,6 @@ function LossBadge({ x, y, width, value, baseValue }) {
     );
 }
 
-/**
- * YieldImpactChart
- *
- * Props:
- *   farmPlan  array  — items from API's farm_plan array
- *             Each item: { crop, expected_yield, adjusted_yield }
- */
 export default function YieldImpactChart({ farmPlan = [] }) {
     const data = farmPlan.map(item => ({
         crop: item.crop,
@@ -90,7 +81,6 @@ export default function YieldImpactChart({ farmPlan = [] }) {
         );
     }
 
-    // Build lookup for base values (needed by LossBadge)
     const baseMap = Object.fromEntries(data.map(d => [d.crop, d.base_yield]));
 
     return (
@@ -101,7 +91,6 @@ export default function YieldImpactChart({ farmPlan = [] }) {
             whileHover={hoverCard}
             className="bg-white border border-slate-100 rounded-2xl shadow-sm p-6"
         >
-            {/* Header */}
             <div className="flex items-center justify-between mb-5">
                 <div className="flex items-center gap-2">
                     <div className="p-1.5 bg-green-50 rounded-lg">
@@ -113,7 +102,6 @@ export default function YieldImpactChart({ farmPlan = [] }) {
                     </div>
                 </div>
 
-                {/* Overall loss summary badge */}
                 {data.some(d => d.base_yield !== d.adjusted_yield) && (
                     <div className="flex items-center gap-1.5 px-2.5 py-1 bg-red-50 border border-red-100 rounded-lg text-xs font-semibold text-red-600">
                         <TrendingDown className="w-3.5 h-3.5" />
@@ -122,7 +110,6 @@ export default function YieldImpactChart({ farmPlan = [] }) {
                 )}
             </div>
 
-            {/* Chart */}
             <ResponsiveContainer width="100%" height={260}>
                 <BarChart
                     data={data}
@@ -155,7 +142,6 @@ export default function YieldImpactChart({ farmPlan = [] }) {
                         wrapperStyle={{ fontSize: 12, paddingTop: 12 }}
                     />
 
-                    {/* Base yield bar — muted blue */}
                     <Bar
                         dataKey="base_yield"
                         name="base_yield"
@@ -173,7 +159,6 @@ export default function YieldImpactChart({ farmPlan = [] }) {
                         />
                     </Bar>
 
-                    {/* Adjusted yield bar — green; red-tinted cells when loss occurred */}
                     <Bar
                         dataKey="adjusted_yield"
                         name="adjusted_yield"
@@ -190,7 +175,6 @@ export default function YieldImpactChart({ farmPlan = [] }) {
                             />
                         ))}
 
-                        {/* Custom label: show –X% if there is a reduction */}
                         <LabelList
                             dataKey="adjusted_yield"
                             content={(props) => (

@@ -7,7 +7,6 @@ import LoadingOverlay from '../components/ui/LoadingOverlay';
 import ErrorState from '../components/ui/ErrorState';
 import { useFarmPlan } from '../context/FarmPlanContext';
 
-// ── Defaults ───────────────────────────────────────────────────────────────────
 const INITIAL = {
     Temperature_C: 23,
     Rainfall_mm: 850,
@@ -27,7 +26,6 @@ const SOIL_TYPES = ['Loamy', 'Sandy', 'Clay', 'Silty', 'Peaty'];
 const IRRIGATION_TYPES = ['Drip', 'Sprinkler', 'Flood', 'Rainfed'];
 const SEASONS = ['Kharif', 'Rabi', 'Summer'];
 
-// ── Validation ─────────────────────────────────────────────────────────────────
 function validate(form) {
     const errs = {};
     if (form.Temperature_C < -10 || form.Temperature_C > 55)
@@ -45,9 +43,7 @@ function validate(form) {
     return errs;
 }
 
-// ── Reusable components ────────────────────────────────────────────────────────
 function SliderField({ label, icon: Icon, name, min, max, step = 1, unit, value, onChange, error }) {
-    // percentage fill for the coloured left-side track
     const pct = ((value - min) / (max - min)) * 100;
 
     return (
@@ -62,16 +58,12 @@ function SliderField({ label, icon: Icon, name, min, max, step = 1, unit, value,
                 </span>
             </div>
 
-            {/* Track wrapper — gives the gradient fill effect */}
             <div className="relative h-5 flex items-center">
-                {/* Background track */}
                 <div className="absolute inset-x-0 h-1.5 rounded-full bg-slate-200" />
-                {/* Filled portion */}
                 <div
                     className="absolute left-0 h-1.5 rounded-full bg-green-500 pointer-events-none"
                     style={{ width: `${pct}%` }}
                 />
-                {/* Range input on top */}
                 <input
                     type="range" min={min} max={max} step={step} value={value}
                     onChange={e => onChange(name, step < 1 ? parseFloat(e.target.value) : parseInt(e.target.value))}
@@ -82,12 +74,10 @@ function SliderField({ label, icon: Icon, name, min, max, step = 1, unit, value,
                 />
             </div>
 
-            {/* Scale: min — ticks — max */}
             <div className="flex items-center justify-between px-0.5">
                 <span className="text-[11px] font-medium text-slate-500 bg-slate-100 px-1.5 py-0.5 rounded">
                     {min}{unit}
                 </span>
-                {/* Mid-point tick markers */}
                 <div className="flex gap-1 items-center">
                     {[25, 50, 75].map(tick => {
                         const tickVal = min + ((max - min) * tick / 100);
@@ -171,7 +161,6 @@ function Card({ title, subtitle, children }) {
     );
 }
 
-// ── Main Page ──────────────────────────────────────────────────────────────────
 export default function PlannerForm() {
     const [form, setForm] = useState(INITIAL);
     const [errors, setErrors] = useState({});
@@ -182,7 +171,6 @@ export default function PlannerForm() {
 
     const set = (name, value) => {
         setForm(prev => ({ ...prev, [name]: value }));
-        // Clear field error on change
         if (errors[name]) setErrors(prev => { const e = { ...prev }; delete e[name]; return e; });
     };
 
@@ -195,8 +183,8 @@ export default function PlannerForm() {
         setApiError('');
         try {
             const result = await generateFarmPlan(form);
-            setFarmPlan(result, form);            // persist to context + localStorage
-            navigate('/dashboard');               // no state needed — read from context
+            setFarmPlan(result, form);
+            navigate('/dashboard');
         } catch (err) {
             setApiError(err.userMessage || 'Something went wrong. Please try again.');
         } finally {
@@ -206,10 +194,8 @@ export default function PlannerForm() {
 
     return (
         <div className="max-w-3xl mx-auto px-4 sm:px-6 py-10">
-            {/* Full-screen overlay while API is pending */}
             <LoadingOverlay show={loading} message="Analyzing farm conditions…" />
 
-            {/* Full-screen error state — shown instead of form when API fails */}
             {apiError ? (
                 <ErrorState
                     message={apiError}
@@ -234,7 +220,6 @@ export default function PlannerForm() {
 
                     <form onSubmit={handleSubmit} noValidate className="space-y-5">
 
-                        {/* ── Card 1: Environmental Conditions ───────────── */}
                         <Card
                             title="🌡️ Environmental Conditions"
                             subtitle="Local climate and soil properties"
@@ -260,7 +245,6 @@ export default function PlannerForm() {
                             </div>
                         </Card>
 
-                        {/* ── Card 2: Resource Availability ──────────────── */}
                         <Card
                             title="💧 Resource Availability"
                             subtitle="Land, water, and fertilizer constraints for optimization"
@@ -289,7 +273,6 @@ export default function PlannerForm() {
                             </div>
                         </Card>
 
-                        {/* ── Card 3: Advanced Inputs ─────────────────────── */}
                         <Card
                             title="⚙️ Advanced Inputs"
                             subtitle="Irrigation method and weekly water availability"
@@ -312,7 +295,6 @@ export default function PlannerForm() {
                             />
                         </Card>
 
-                        {/* ── API error banner ────────────────────────────── */}
                         {apiError && (
                             <motion.div
                                 initial={{ opacity: 0, y: -6 }} animate={{ opacity: 1, y: 0 }}
@@ -323,7 +305,6 @@ export default function PlannerForm() {
                             </motion.div>
                         )}
 
-                        {/* ── Submit ──────────────────────────────────────── */}
                         <motion.button
                             type="submit" disabled={loading}
                             whileTap={{ scale: 0.97 }}
@@ -335,8 +316,7 @@ export default function PlannerForm() {
 
                     </form>
                 </>
-            )} {/* end apiError ternary */}
+            )}
         </div>
     );
 }
-

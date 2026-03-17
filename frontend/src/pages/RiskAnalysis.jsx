@@ -7,7 +7,6 @@ import LoadingOverlay from '../components/ui/LoadingOverlay';
 import ErrorState from '../components/ui/ErrorState';
 import { fadeUp } from '../utils/animations';
 
-// ── Constants ─────────────────────────────────────────────────────────────────
 const SOIL_TYPES = ['Loamy', 'Sandy', 'Clay', 'Silty', 'Peaty'];
 const IRRIGATION_TYPES = ['Drip', 'Sprinkler', 'Flood', 'Rainfed'];
 const SEASONS = ['Kharif', 'Rabi', 'Summer'];
@@ -19,7 +18,6 @@ const INITIAL = {
     land_area: 10, water_available: 15000, fertilizer_available: 500,
 };
 
-// ── Field components ──────────────────────────────────────────────────────────
 function SliderField({ label, icon: Icon, name, min, max, step = 1, unit, value, onChange }) {
     const pct = ((value - min) / (max - min)) * 100;
     return (
@@ -96,7 +94,6 @@ function Card({ title, subtitle, children }) {
     );
 }
 
-// ── Main Page ─────────────────────────────────────────────────────────────────
 export default function RiskAnalysis() {
     const navigate = useNavigate();
     const [form, setForm] = useState(INITIAL);
@@ -124,7 +121,6 @@ export default function RiskAnalysis() {
         <div className="max-w-5xl mx-auto px-4 sm:px-6 py-10">
             <LoadingOverlay show={loading} message="Running risk analysis…" />
 
-            {/* Header */}
             <motion.div variants={fadeUp} initial="hidden" animate="visible" className="mb-8">
                 <div className="flex items-center gap-3 mb-2">
                     <div className="p-2 bg-violet-100 rounded-xl">

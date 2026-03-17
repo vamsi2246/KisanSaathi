@@ -3,10 +3,8 @@ const router = express.Router();
 const prisma = require('../prismaClient');
 const generatePlan = require('../controllers/generatePlan');
 
-// Generate and save a new farm plan
 router.post('/generate', generatePlan);
 
-// Get all farm plans
 router.get('/', async (req, res) => {
   try {
     const plans = await prisma.farmPlan.findMany({
@@ -19,17 +17,16 @@ router.get('/', async (req, res) => {
   }
 });
 
-// Get a single farm plan by ID
 router.get('/:id', async (req, res) => {
   try {
     const plan = await prisma.farmPlan.findUnique({
       where: { id: req.params.id }
     });
-    
+
     if (!plan) {
       return res.status(404).json({ error: 'Plan not found' });
     }
-    
+
     res.json(plan);
   } catch (error) {
     console.error('Error fetching plan:', error);
@@ -37,7 +34,6 @@ router.get('/:id', async (req, res) => {
   }
 });
 
-// Delete a farm plan
 router.delete('/:id', async (req, res) => {
   try {
     await prisma.farmPlan.delete({

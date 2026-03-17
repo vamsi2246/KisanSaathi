@@ -7,7 +7,6 @@ import { motion } from 'framer-motion';
 import { PieChart as PieIcon } from 'lucide-react';
 import { slideUp, hoverCard } from '../../utils/animations';
 
-// ── Colour palette ─────────────────────────────────────────────────────────────
 const CROP_COLORS = {
     Tomato: '#22c55e',
     Wheat: '#f59e0b',
@@ -21,7 +20,6 @@ function colorFor(crop, index) {
     return CROP_COLORS[crop] ?? FALLBACK_COLORS[index % FALLBACK_COLORS.length];
 }
 
-// ── Custom Tooltip ─────────────────────────────────────────────────────────────
 function CustomTooltip({ active, payload }) {
     if (!active || !payload?.length) return null;
     const { name, value, payload: d } = payload[0];
@@ -50,7 +48,6 @@ function CustomTooltip({ active, payload }) {
     );
 }
 
-// ── Active slice renderer (expands on hover) ───────────────────────────────────
 function ActiveSlice(props) {
     const {
         cx, cy, innerRadius, outerRadius, startAngle, endAngle, fill,
@@ -77,13 +74,6 @@ function ActiveSlice(props) {
     );
 }
 
-/**
- * ProfitPieChart
- *
- * Props:
- *   farmPlan  array  — items from API's farm_plan array
- *             Each item: { crop, expected_profit }
- */
 export default function ProfitPieChart({ farmPlan = [] }) {
     const [activeIndex, setActiveIndex] = useState(null);
 
@@ -118,7 +108,6 @@ export default function ProfitPieChart({ farmPlan = [] }) {
             whileHover={hoverCard}
             className="bg-white border border-slate-100 rounded-2xl shadow-sm p-6"
         >
-            {/* Header */}
             <div className="flex items-center justify-between mb-5">
                 <div className="flex items-center gap-2">
                     <div className="p-1.5 bg-violet-50 rounded-lg">
@@ -134,7 +123,6 @@ export default function ProfitPieChart({ farmPlan = [] }) {
                 </span>
             </div>
 
-            {/* Chart */}
             <ResponsiveContainer width="100%" height={260}>
                 <PieChart>
                     <Pie
@@ -160,7 +148,6 @@ export default function ProfitPieChart({ farmPlan = [] }) {
                         ))}
                     </Pie>
 
-                    {/* Centre label */}
                     <text
                         x="50%" y="44%"
                         textAnchor="middle" dominantBaseline="middle"

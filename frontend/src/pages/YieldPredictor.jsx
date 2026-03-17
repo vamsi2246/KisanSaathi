@@ -7,7 +7,6 @@ import LoadingOverlay from '../components/ui/LoadingOverlay';
 import ErrorState from '../components/ui/ErrorState';
 import { fadeUp } from '../utils/animations';
 
-// ── Constants ─────────────────────────────────────────────────────────────────
 const SOIL_TYPES = ['Loamy', 'Sandy', 'Clay', 'Silty', 'Peaty'];
 const IRRIGATION_TYPES = ['Drip', 'Sprinkler', 'Flood', 'Rainfed'];
 const SEASONS = ['Kharif', 'Rabi', 'Summer'];
@@ -20,7 +19,6 @@ const INITIAL = {
     crop_name: 'Wheat', acres: 5,
 };
 
-// ── Field components ──────────────────────────────────────────────────────────
 function SliderField({ label, icon: Icon, name, min, max, step = 1, unit, value, onChange }) {
     const pct = ((value - min) / (max - min)) * 100;
     return (
@@ -97,14 +95,12 @@ function Card({ title, subtitle, children }) {
     );
 }
 
-// ── Main Page ─────────────────────────────────────────────────────────────────
 export default function YieldPredictor() {
     const [form, setForm] = useState(INITIAL);
     const [loading, setLoading] = useState(false);
     const [apiError, setApiError] = useState('');
     const navigate = useNavigate();
 
-    // Pre-fill from CropPredictor if navigated with sessionStorage
     useEffect(() => {
         const raw = sessionStorage.getItem('yieldPrefill');
         if (raw) {
@@ -148,7 +144,6 @@ export default function YieldPredictor() {
         <div className="max-w-3xl mx-auto px-4 sm:px-6 py-10">
             <LoadingOverlay show={loading} message="Predicting crop yield…" />
 
-            {/* Header */}
             <motion.div variants={fadeUp} initial="hidden" animate="visible" className="mb-8">
                 <div className="flex items-center gap-3 mb-2">
                     <div className="p-2 bg-emerald-100 rounded-xl">
@@ -166,7 +161,6 @@ export default function YieldPredictor() {
             ) : (
                 <form onSubmit={handleSubmit} noValidate className="space-y-5">
 
-                    {/* Crop selection card */}
                     <Card title="🌿 Crop Selection" subtitle="Which crop and how many acres?">
                         <div className="grid grid-cols-2 gap-4">
                             <SelectField label="Crop Name" name="crop_name" options={CROPS} value={form.crop_name} onChange={set} />

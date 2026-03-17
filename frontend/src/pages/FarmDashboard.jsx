@@ -6,11 +6,9 @@ import { motion } from 'framer-motion';
 import { useFarmPlan } from '../context/FarmPlanContext';
 import { fadeUp } from '../utils/animations';
 
-// ── Placeholder until dashboard components are wired ──────────────────────────
 export default function FarmDashboard() {
     const { result, clearFarmPlan } = useFarmPlan();
 
-    // ── Empty state — no plan generated yet ─────────────────────────────────────
     if (!result) {
         return (
             <div className="flex flex-col items-center justify-center py-28 px-6 text-center">
@@ -32,11 +30,9 @@ export default function FarmDashboard() {
         );
     }
 
-    // ── Dashboard with data ──────────────────────────────────────────────────────
     return (
         <div className="max-w-5xl mx-auto px-4 sm:px-6 py-8 space-y-6">
 
-            {/* Header */}
             <motion.div
                 variants={fadeUp} initial="hidden" animate="visible"
                 className="flex items-center justify-between"
@@ -65,7 +61,6 @@ export default function FarmDashboard() {
                 </div>
             </motion.div>
 
-            {/* Raw summary — cards will replace this soon */}
             <motion.div
                 variants={fadeUp} initial="hidden" animate="visible" custom={1}
                 className="bg-white border border-slate-100 rounded-2xl shadow-sm p-6 grid grid-cols-2 sm:grid-cols-3 gap-5"
@@ -75,7 +70,6 @@ export default function FarmDashboard() {
                 <Stat label="Sustainability Score" value={`${result.sustainability_score} / 100`} />
             </motion.div>
 
-            {/* Farm plan table */}
             <motion.div
                 variants={fadeUp} initial="hidden" animate="visible" custom={2}
                 className="bg-white border border-slate-100 rounded-2xl shadow-sm overflow-hidden"
@@ -111,7 +105,6 @@ export default function FarmDashboard() {
     );
 }
 
-// ── Helpers ────────────────────────────────────────────────────────────────────
 function Stat({ label, value }) {
     return (
         <div>

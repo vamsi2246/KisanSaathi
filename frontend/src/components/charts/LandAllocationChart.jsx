@@ -7,7 +7,6 @@ import { motion } from 'framer-motion';
 import { Map } from 'lucide-react';
 import { slideUp, hoverCard } from '../../utils/animations';
 
-// ── Colour palette per crop ────────────────────────────────────────────────────
 const CROP_COLORS = {
     Tomato: '#22c55e',
     Wheat: '#f59e0b',
@@ -17,7 +16,6 @@ const CROP_COLORS = {
 };
 const DEFAULT_COLOR = '#94a3b8';
 
-// ── Custom Tooltip ─────────────────────────────────────────────────────────────
 function CustomTooltip({ active, payload }) {
     if (!active || !payload?.length) return null;
     const d = payload[0].payload;
@@ -43,15 +41,7 @@ function CustomTooltip({ active, payload }) {
     );
 }
 
-/**
- * LandAllocationChart
- *
- * Props:
- *   farmPlan  array  — items from the API's farm_plan array
- *             Each item: { crop, acres, expected_profit, ... }
- */
 export default function LandAllocationChart({ farmPlan = [] }) {
-    // Shape data for Recharts
     const data = farmPlan.map(item => ({
         crop: item.crop,
         acres: item.acres,
@@ -74,7 +64,6 @@ export default function LandAllocationChart({ farmPlan = [] }) {
             whileHover={hoverCard}
             className="bg-white border border-slate-100 rounded-2xl shadow-sm p-6"
         >
-            {/* Header */}
             <div className="flex items-center gap-2 mb-5">
                 <div className="p-1.5 bg-blue-50 rounded-lg">
                     <Map className="w-4 h-4 text-blue-500" />
@@ -85,7 +74,6 @@ export default function LandAllocationChart({ farmPlan = [] }) {
                 </div>
             </div>
 
-            {/* Chart */}
             <ResponsiveContainer width="100%" height={240}>
                 <BarChart
                     data={data}
@@ -127,7 +115,6 @@ export default function LandAllocationChart({ farmPlan = [] }) {
                 </BarChart>
             </ResponsiveContainer>
 
-            {/* Legend */}
             <div className="flex flex-wrap gap-3 mt-4 pt-4 border-t border-slate-50">
                 {data.map(d => (
                     <div key={d.crop} className="flex items-center gap-1.5 text-xs text-slate-600">

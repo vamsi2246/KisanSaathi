@@ -1,7 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
-// Pages
 import Home from './pages/Home';
 import PlannerForm from './pages/PlannerForm';
 import FarmDashboard from './pages/FarmDashboard';
@@ -13,10 +12,8 @@ import RiskResult from './pages/RiskResult';
 import CropResult from './pages/CropResult';
 import YieldResult from './pages/YieldResult';
 
-// Layout
 import Navbar from './components/layout/Navbar';
 
-// Context
 import { FarmPlanProvider } from './context/FarmPlanContext';
 
 function App() {

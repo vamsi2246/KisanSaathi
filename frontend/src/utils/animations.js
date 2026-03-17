@@ -1,9 +1,3 @@
-/**
- * Shared Framer Motion animation variants.
- * Import and use in any component for consistent, minimal animations.
- */
-
-// ── Entrance variants ──────────────────────────────────────────────────────────
 export const fadeUp = {
     hidden: { opacity: 0, y: 20 },
     visible: (i = 0) => ({
@@ -36,13 +30,11 @@ export const scaleIn = {
     },
 };
 
-// ── Stagger container ──────────────────────────────────────────────────────────
 export const staggerContainer = (stagger = 0.1) => ({
     hidden: {},
     visible: { transition: { staggerChildren: stagger } },
 });
 
-// ── Hover / tap effects ────────────────────────────────────────────────────────
 export const hoverCard = {
     scale: 1.015,
     transition: { duration: 0.2, ease: 'easeOut' },

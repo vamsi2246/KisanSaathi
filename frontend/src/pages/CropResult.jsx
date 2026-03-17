@@ -37,7 +37,6 @@ export default function CropResult() {
     return (
         <div className="max-w-2xl mx-auto px-4 sm:px-6 py-10 space-y-6">
 
-            {/* Header */}
             <motion.div variants={fadeUp} initial="hidden" animate="visible"
                 className="flex items-center justify-between">
                 <div className="flex items-center gap-3">
@@ -54,7 +53,6 @@ export default function CropResult() {
                 </button>
             </motion.div>
 
-            {/* Result Card */}
             <motion.div
                 initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.45, ease: 'easeOut' }}
@@ -70,7 +68,6 @@ export default function CropResult() {
                     <p className="text-5xl font-extrabold tracking-tight">{crop}</p>
                     <p className="text-white/60 text-sm">Best match for your soil &amp; climate conditions</p>
 
-                    {/* Go to yield predictor pre-filled */}
                     <button
                         onClick={() => {
                             const prefill = sessionStorage.getItem('cropPrefillForYield');

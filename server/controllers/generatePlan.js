@@ -7,16 +7,14 @@ async function generatePlan(req, res) {
   try {
     const planData = req.body;
 
-    // Call FastAPI to generate the farm plan
     const response = await axios.post(`${FASTAPI_URL}/generate-farm-plan`, planData);
     const farmPlan = response.data;
 
-    // Map FastAPI response to our database schema
     const savedPlan = await prisma.farmPlan.create({
       data: {
         farmerName: planData.farmerName || null,
         totalArea: planData.totalArea || planData.land_area,
-        recommendations: farmPlan.farm_plan || [],  // Array of crop allocations
+        recommendations: farmPlan.farm_plan || [],
         allocation: {
           predicted_crop: farmPlan.predicted_crop,
           candidate_crops: farmPlan.candidate_crops,
@@ -31,9 +29,9 @@ async function generatePlan(req, res) {
     res.json(savedPlan);
   } catch (error) {
     console.error('Error generating plan:', error.message);
-    res.status(500).json({ 
+    res.status(500).json({
       error: 'Failed to generate farm plan',
-      details: error.message 
+      details: error.message
     });
   }
 }

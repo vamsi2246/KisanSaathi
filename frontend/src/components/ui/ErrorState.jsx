@@ -2,14 +2,6 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { AlertTriangle, RefreshCw } from 'lucide-react';
 
-/**
- * ErrorState — centered full-area error card.
- *
- * Props:
- *   message   string    — error text shown beneath the icon (default: "Unable to analyze farm")
- *   onRetry   function  — called when "Retry" is clicked
- *   className string    — extra wrapper classes
- */
 export default function ErrorState({
     message = 'Unable to analyze farm',
     onRetry,
@@ -22,20 +14,16 @@ export default function ErrorState({
             transition={{ duration: 0.35, ease: 'easeOut' }}
             className={`flex flex-col items-center justify-center py-20 px-6 text-center ${className}`}
         >
-            {/* Icon */}
             <div className="p-4 bg-red-50 rounded-2xl mb-5">
                 <AlertTriangle className="w-9 h-9 text-red-400" />
             </div>
 
-            {/* Title */}
             <h2 className="text-lg font-bold text-slate-800 mb-1">Something went wrong</h2>
 
-            {/* Message */}
             <p className="text-sm text-slate-500 max-w-xs leading-relaxed mb-7">
                 {message}
             </p>
 
-            {/* Retry button */}
             {onRetry && (
                 <motion.button
                     onClick={onRetry}

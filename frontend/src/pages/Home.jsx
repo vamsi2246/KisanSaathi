@@ -21,7 +21,6 @@ export default function Home() {
     return (
         <div className="relative overflow-hidden">
 
-            {/* ── Background gradient ──────────────────────────── */}
             <div
                 aria-hidden
                 className="absolute inset-0 -z-10"
@@ -33,14 +32,11 @@ export default function Home() {
                 }}
             />
 
-            {/* ── Decorative blobs ─────────────────────────────── */}
             <div aria-hidden className="absolute top-20 left-10 w-64 h-64 rounded-full bg-green-100/40 blur-3xl -z-10" />
             <div aria-hidden className="absolute bottom-10 right-10 w-80 h-80 rounded-full bg-sky-100/40 blur-3xl -z-10" />
 
-            {/* ── Hero section ─────────────────────────────────── */}
             <section className="max-w-5xl mx-auto px-6 pt-24 pb-20 text-center">
 
-                {/* Badge */}
                 <motion.div
                     variants={fadeUp} initial="hidden" animate="visible" custom={0}
                     className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-green-100 text-green-700 text-sm font-semibold mb-6 border border-green-200"
@@ -49,7 +45,6 @@ export default function Home() {
                     AI-Powered Smart Farming
                 </motion.div>
 
-                {/* Main title */}
                 <motion.h1
                     variants={fadeUp} initial="hidden" animate="visible" custom={1}
                     className="text-5xl sm:text-6xl lg:text-7xl font-extrabold text-slate-900 leading-tight tracking-tight text-balance"
@@ -61,7 +56,6 @@ export default function Home() {
                     Advisor
                 </motion.h1>
 
-                {/* Subtitle */}
                 <motion.p
                     variants={fadeUp} initial="hidden" animate="visible" custom={2}
                     className="mt-5 text-lg sm:text-xl text-slate-500 max-w-xl mx-auto leading-relaxed text-balance"
@@ -71,7 +65,6 @@ export default function Home() {
                     Powered by machine learning and linear programming.
                 </motion.p>
 
-                {/* CTA button */}
                 <motion.div
                     variants={fadeUp} initial="hidden" animate="visible" custom={3}
                     className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4"

@@ -2,7 +2,6 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Sprout, ShieldCheck, ShieldAlert, ShieldX } from 'lucide-react';
 
-// ── Risk config ────────────────────────────────────────────────────────────────
 const RISK_CONFIG = {
     Low: {
         label: 'Low Risk',
@@ -27,7 +26,6 @@ const RISK_CONFIG = {
     },
 };
 
-// ── Animation variants ─────────────────────────────────────────────────────────
 const container = {
     hidden: {},
     visible: { transition: { staggerChildren: 0.12 } },
@@ -37,13 +35,6 @@ const fadeUp = {
     visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' } },
 };
 
-/**
- * RecommendationHero — large summary card for the top of FarmDashboard.
- *
- * Props:
- *   predictedCrop       string   e.g. "Tomato"
- *   riskLevel           string   "Low" | "Medium" | "High"
- */
 export default function RecommendationHero({ predictedCrop, riskLevel = 'Low' }) {
     const risk = RISK_CONFIG[riskLevel] ?? RISK_CONFIG.Low;
     const RiskIcon = risk.icon;
@@ -53,13 +44,11 @@ export default function RecommendationHero({ predictedCrop, riskLevel = 'Low' })
             variants={container} initial="hidden" animate="visible"
             className={`relative overflow-hidden bg-gradient-to-br from-green-600 to-emerald-700 rounded-2xl p-7 text-white shadow-xl ${risk.glow}`}
         >
-            {/* ── Decorative blobs ─────────────────────────── */}
             <div aria-hidden className="absolute top-0 right-0 w-64 h-64 rounded-full bg-white/5 -translate-y-1/2 translate-x-1/4" />
             <div aria-hidden className="absolute bottom-0 left-0 w-48 h-48 rounded-full bg-black/5 translate-y-1/2 -translate-x-1/4" />
 
             <div className="relative z-10 grid grid-cols-1 sm:grid-cols-2 gap-6">
 
-                {/* ── Predicted Crop ───────────────────────────── */}
                 <motion.div variants={fadeUp} className="flex flex-col gap-2">
                     <div className="flex items-center gap-2 text-white/70 text-xs font-semibold uppercase tracking-widest">
                         <Sprout className="w-3.5 h-3.5" />
@@ -76,7 +65,6 @@ export default function RecommendationHero({ predictedCrop, riskLevel = 'Low' })
                     <p className="text-white/60 text-xs">Based on your soil & climate</p>
                 </motion.div>
 
-                {/* ── Risk Badge ───────────────────────────────── */}
                 <motion.div variants={fadeUp} className="flex flex-col gap-2 sm:items-end">
                     <div className="flex items-center gap-2 text-white/70 text-xs font-semibold uppercase tracking-widest">
                         <RiskIcon className="w-3.5 h-3.5" />
