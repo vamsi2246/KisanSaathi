@@ -6,6 +6,10 @@ import { fadeUp } from '../utils/animations';
 
 const CROP_ICONS = {
     Rice: '🌾', Wheat: '🌾', Tomato: '🍅', Maize: '🌽', Potato: '🥔',
+    Garlic: '🧄', Carrot: '🥕', Brinjal: '🍆', Chili: '🌶️', Cabbage: '🥬',
+    Broccoli: '🥦', Cucumber: '🥒', Pumpkin: '🎃', Beans: '🫘', Peanut: '🥜',
+    Mushroom: '🍄', Sugarcane: '🎋', Coconut: '🥥', Mango: '🥭', Banana: '🍌',
+    Grapes: '🍇', Lemon: '🍋', Watermelon: '🍉', Apple: '🍎', Onion: '🧅'
 };
 
 export default function CropResult() {

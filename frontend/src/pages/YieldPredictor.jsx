@@ -9,8 +9,14 @@ import { fadeUp } from '../utils/animations';
 
 const SOIL_TYPES = ['Loamy', 'Sandy', 'Clay', 'Silty', 'Peaty'];
 const IRRIGATION_TYPES = ['Drip', 'Sprinkler', 'Flood', 'Rainfed'];
-const SEASONS = ['Kharif', 'Rabi', 'Summer'];
-const CROPS = ['Rice', 'Wheat', 'Tomato', 'Maize', 'Potato'];
+const SEASONS = ['Kharif', 'Rabi', 'Summer', 'Zaid'];
+const CROPS = [
+    'Rice', 'Wheat', 'Tomato', 'Maize', 'Potato',
+    'Garlic', 'Carrot', 'Brinjal', 'Chili', 'Cabbage',
+    'Broccoli', 'Cucumber', 'Pumpkin', 'Beans', 'Peanut',
+    'Mushroom', 'Sugarcane', 'Coconut', 'Mango', 'Banana',
+    'Grapes', 'Lemon', 'Watermelon', 'Apple', 'Onion'
+];
 
 const INITIAL = {
     Temperature_C: 23, Rainfall_mm: 850, Soil_pH: 6.5,
