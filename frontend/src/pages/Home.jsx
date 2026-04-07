@@ -71,6 +71,7 @@ export default function Home() {
                 >
                     <Link
                         to="/planner"
+                        aria-label="Start Farm Planning"
                         className="group inline-flex items-center gap-2 px-7 py-3.5 bg-green-600 text-white font-semibold rounded-xl shadow-lg shadow-green-200 hover:bg-green-700 hover:shadow-green-300 active:scale-95 transition-all duration-200 text-base"
                     >
                         Start Planning
