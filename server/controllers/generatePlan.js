@@ -20,9 +20,9 @@ async function generatePlan(req, res) {
           candidate_crops: farmPlan.candidate_crops,
           farm_plan: farmPlan.farm_plan
         },
-        totalProfit: farmPlan.total_expected_profit || 0,
-        sustainability: farmPlan.sustainability_score || 0,
-        riskLevel: farmPlan.farm_plan?.[0]?.risk_level || 'Medium'
+        totalProfit: farmPlan.total_expected_profit ?? 0,
+        sustainability: farmPlan.sustainability_score ?? 0,
+        riskLevel: farmPlan.farm_plan?.[0]?.risk_level ?? 'Medium'
       }
     });
 
