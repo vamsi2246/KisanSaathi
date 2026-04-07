@@ -47,6 +47,8 @@ def optimize_allocation(
     
     if not crop_names:
         raise ValueError("No crops provided. Please supply at least one crop name.")
+    if land_area <= 0:
+        raise ValueError("Land area must be greater than zero.")
     
     valid_crops = list(crop_names)
     
