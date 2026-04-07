@@ -22,7 +22,7 @@ def safe_preprocess(input_data: dict) -> dict:
 
     for key in all_keys:
         value = input_data.get(key)
-        is_missing = value is None or value == ""
+        is_missing = value is None or str(value).strip() == ""
 
         if is_missing:
             default = FEATURE_DEFAULTS.get(key)
