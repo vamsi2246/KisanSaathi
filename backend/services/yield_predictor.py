@@ -89,6 +89,8 @@ def _encode_input(input_df: pd.DataFrame) -> pd.DataFrame:
 
 def predict_yield(input_data: dict, crop_name: str) -> float:
     """Predict crop yield in tons per acre for given farm conditions."""
+    if not input_data:
+        raise ValueError("Input data cannot be empty.")
     data = {**input_data, "Crop": crop_name}
     row = pd.DataFrame([data])[FEATURE_COLUMNS]
     row = _encode_input(row)
