@@ -74,7 +74,7 @@ def _sustainability_score(enriched: dict) -> int:
     risk_scores = {"Low": 100, "Medium": 60, "High": 20}
     if not enriched:
         return 0
-    total = sum(risk_scores.get(d["risk_level"], 20) for d in enriched.values())
+    total = sum(risk_scores.get(d.get("risk_level"), 20) for d in enriched.values())
     return round(total / len(enriched))
 
 
