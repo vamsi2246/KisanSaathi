@@ -69,8 +69,10 @@ api.interceptors.response.use(
     }
 );
 
-export const generateFarmPlan = (data) =>
-    api.post('/generate-farm-plan', data).then(r => r.data);
+export const generateFarmPlan = async (data) => {
+    const response = await api.post('/generate-farm-plan', data);
+    return response.data;
+};
 
 export const predictCrop = (data) =>
     api.post('/predict-crop', data).then(r => r.data);
